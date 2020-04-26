@@ -1,5 +1,4 @@
-import SmartInput from "./smartInput";
-
+import { SmartInput } from './smartFormCompos'
 export {
     SmartInput
 }
