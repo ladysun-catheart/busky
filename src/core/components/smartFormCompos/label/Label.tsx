@@ -1,19 +1,19 @@
 import React, {MouseEvent} from 'react';
 
 export type LabelProps = {
-    onClickHelp: (event: MouseEvent<HTMLButtonElement>) => void,
-    onClickClose: (event: MouseEvent<HTMLButtonElement>) => void,
+    label: string,
+    help: string,
 }
 
-const Label: React.FC<LabelProps> = ({ onClickHelp, onClickClose }) => {
+const Label: React.FC<LabelProps> = ({ label, help }) => {
     return (
         <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'space-between'}}>
             <div>
-                <span>Label</span>
-                <button onClick={onClickHelp}>?</button>
+                <span>{label}</span>
+                <button onClick={() => console.log(help)}>?</button>
             </div>
             <div>
-                <button onClick={onClickClose}>x</button>
+                <button onClick={() => console.log('clear')}>x</button>
             </div>
         </div>
     );

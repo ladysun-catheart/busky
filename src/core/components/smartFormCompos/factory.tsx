@@ -1,26 +1,36 @@
-import React, {ComponentType, MouseEvent} from 'react'
+import React, {MouseEvent} from 'react'
 import { LabelProps } from './label/Label'
+import InputProps from "./type";
+
+type HocFactoryProps = {
+    label: string,
+    help: string,
+    value: string,
+    onChange: (event: React.FormEvent<HTMLInputElement>) => void
+}
 
 const factory = (
     Label: React.FC<LabelProps>,
-    Element: React.FC
-): ComponentType => {
-    const hocComponent = ({...props}) => {
+    Element: React.FC<InputProps>
+): React.FC<HocFactoryProps> => {
 
+    const hocFactory = (props: HocFactoryProps) => {
+        const {label, help, value, onChange} = props
         return (
             <div style={{display: 'flex', flexDirection: 'column'}}>
                 <Label
-                    onClickHelp={() => console.log('help')}
-                    onClickClose={() => console.log('close')}
+                    label={label}
+                    help={help}
                 />
-                <Element />
+                <Element
+                    value={value}
+                    onChange={onChange}
+                />
             </div>
         )
     }
 
-    hocComponent.propTypes = {}
-
-    return hocComponent
+    return hocFactory
 }
 
 export default factory

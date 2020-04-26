@@ -1,5 +1,5 @@
 import React from "react";
-import { SmartInput } from "../core/components";
+import FormSearch from "./formSearch";
 
 interface Props {
 
@@ -11,7 +11,11 @@ class DashBoard extends React.Component<Props, any>{
     }
 
     render(): React.ReactNode {
-        return <div><SmartInput/></div>;
+        return (
+            <div>
+                <FormSearch />
+            </div>
+        );
     }
 }
 
