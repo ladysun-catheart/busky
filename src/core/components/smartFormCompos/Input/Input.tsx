@@ -3,17 +3,13 @@ import InputProps from "../type";
 
 const Input: React.FC<InputProps> = ({value, onChange}) => {
     return (
-        <div>
-            <div style={{display: 'flex', flexDirection: 'row'}}>
-                <div style={{flex: '1'}}>
-                    <input
-                        style={{width: '100%'}}
-                        type="text"
-                        value={value}
-                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
-                    />
-                </div>
-            </div>
+        <div style={{flex: '1', flexDirection: 'row'}}>
+            <input
+                style={{width: 'calc(100% - 1.3rem)', height: '1.5rem', padding: '0.25rem .5rem', fontSize: '1rem'}}
+                type="text"
+                value={value}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
+            />
         </div>
     );
 };

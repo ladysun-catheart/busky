@@ -17,7 +17,7 @@ const factory = (
     const hocFactory = (props: HocFactoryProps) => {
         const {label, help, value, onChange} = props
         return (
-            <div style={{display: 'flex', flexDirection: 'column'}}>
+            <div style={{display: 'flex', flexDirection: 'column', padding: '.5rem 1rem'}}>
                 <Label
                     label={label}
                     help={help}
