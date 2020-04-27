@@ -1,9 +1,9 @@
 import React from 'react';
 
-const RowContainer = () => {
+const RowContainer: React.FC = ({children}) => {
     return (
-        <div>
-            
+        <div style={{display: 'flex'}}>
+            {children}
         </div>
     );
 };

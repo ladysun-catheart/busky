@@ -2,7 +2,7 @@ import React, {MouseEvent} from 'react'
 import { LabelProps } from './label/Label'
 import InputProps from "./type";
 
-type HocFactoryProps = {
+export type HocFactoryProps = {
     label: string,
     help: string,
     value: string,

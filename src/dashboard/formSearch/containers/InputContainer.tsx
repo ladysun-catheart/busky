@@ -1,9 +1,13 @@
-import React from 'react';
+import React, {ReactNode} from 'react';
 
-const InputContainer = () => {
+type Props = {
+    children: ReactNode,
+    spaces: number
+}
+const InputContainer: React.FC<Props> = ({ children, spaces}) => {
     return (
-        <div>
-            
+        <div style={{flex: `${spaces}`}}>
+            {children}
         </div>
     );
 };
