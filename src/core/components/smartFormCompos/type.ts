@@ -2,7 +2,7 @@ import React from "react";
 
 type InputProps = {
     value: string,
-    onChange: (event: React.ChangeEvent<HTMLInputElement>) => void
+    onChange: (val: string) => void
 }
 
 export default InputProps

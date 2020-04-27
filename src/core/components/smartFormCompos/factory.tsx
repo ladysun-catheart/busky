@@ -6,7 +6,7 @@ type HocFactoryProps = {
     label: string,
     help: string,
     value: string,
-    onChange: (event: React.FormEvent<HTMLInputElement>) => void
+    onChange: (val: string) => void
 }
 
 const factory = (

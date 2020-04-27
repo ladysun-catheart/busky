@@ -10,7 +10,7 @@ const Input: React.FC<InputProps> = ({value, onChange}) => {
                         style={{width: '100%'}}
                         type="text"
                         value={value}
-                        onChange={onChange}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => onChange(e.target.value)}
                     />
                 </div>
             </div>

@@ -14,8 +14,7 @@ class PeopleBuilder {
     private children: number = 0
     private activity: PhisicalActivityPeople = PhisicalActivityPeople.none
     private illnessAlergieList: Array<string> = []
-
-
+    
     constructor(){}
 
     public withName(value: string) {
