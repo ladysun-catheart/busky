@@ -1,12 +1,5 @@
-import People, {
-    CivilPeople,
-    ColorEyeRegular,
-    ColorFantasy,
-    ColorHairRegular,
-    PhisicalActivityPeople,
-    RacePeople,
-    SexPeople
-} from "./People";
+import {ColorFantasy, ColorHairRegular, SexPeople, ColorEyeRegular, RacePeople, CivilPeople, PhisicalActivityPeople} from "./enum"
+import People from "./People";
 
 class PeopleBuilder {
     private name: string = ''
@@ -22,62 +15,84 @@ class PeopleBuilder {
     private activity: PhisicalActivityPeople = PhisicalActivityPeople.none
     private illnessAlergieList: Array<string> = []
 
-    private _people: People
 
-    constructor(){
-        this._people = new People()
+    constructor(){}
+
+    public withName(value: string) {
+        this.name = value
+        return this;
     }
 
-    public setName(value: string) {
-        this._people.name = value
+    public withAge(value: number) {
+        this.age = value
+        return this;
     }
 
-    public setAge(value: number) {
-        this._people.age = value
+    public withSex(value: SexPeople) {
+        this.sex = value
+        return this;
     }
 
-    public setSex(value: SexPeople) {
-        this._people.sex = value
+    public withHair(value: ColorHairRegular & ColorFantasy) {
+        this.hair = value
+        return this;
     }
 
-    public setHair(value: ColorHairRegular & ColorFantasy) {
-        this._people.hair = value
+    public withEyes(value: ColorEyeRegular & ColorFantasy) {
+        this.eyes = value
+        return this;
     }
 
-    public setEyes(value: ColorEyeRegular & ColorFantasy) {
-        this._people.eyes = value
+    public withWeight(value: number) {
+        this.weight = value
+        return this;
     }
 
-    public setWeight(value: number) {
-        this._people.weight = value
+    public withHeight(value: number) {
+        this.height = value
+        return this;
     }
 
-    public setHeight(value: number) {
-        this._people.height = value
+    public withRace(value: RacePeople) {
+        this.race = value
+        return this;
     }
 
-    public setRace(value: RacePeople) {
-        this._people.race = value
+    public withCivil(value: CivilPeople) {
+        this.civil = value
+        return this;
     }
 
-    public setCivil(value: CivilPeople) {
-        this._people.civil = value
+    public withChildren(value: number) {
+        this.children = value
+        return this;
     }
 
-    public setChildren(value: number) {
-        this._people.children = value
+    public withActivity(value: PhisicalActivityPeople) {
+        this.activity = value
+        return this;
     }
 
-    public setActivity(value: PhisicalActivityPeople) {
-        this._people.activity = value
+    public withIllnessAlergieList(value: Array<string>) {
+        this.illnessAlergieList = value
+        return this;
     }
 
-    public setIllnessAlergieList(value: Array<string>) {
-        this._people.illnessAlergieList = value
-    }
-
-    get people(): People {
-        return this._people
+    public build(): People {
+        const newPeople = new People()
+        newPeople.name = this.name
+        newPeople.age = this.age
+        newPeople.sex = this.sex
+        newPeople.hair = this.hair
+        newPeople.eyes = this.eyes
+        newPeople.weight = this.weight
+        newPeople.height = this.height
+        newPeople.race = this.race
+        newPeople.civil = this.civil
+        newPeople.children = this.children
+        newPeople.activity = this.activity
+        newPeople.illnessAlergieList = this.illnessAlergieList
+        return newPeople
     }
 }
 

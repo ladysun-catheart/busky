@@ -1,9 +1,10 @@
 import React from 'react';
 import {SmartInput} from "../../core/components/smartFormCompos";
 import People from "../../core/models/people/People";
+import {PeopleBuilder} from "../../core/models/people";
 
 const FormSearch: React.FC = () => {
-    const formValues: People = new People()
+    const peopleBuilder: PeopleBuilder = new PeopleBuilder()
     return (
         <div>
             <div>
