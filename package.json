@@ -49,6 +49,7 @@
   "devDependencies": {
     "cypress": "^4.4.1",
     "faker": "^4.1.0",
+    "node-sass": "^4.14.0",
     "testing-library": "^0.0.2"
   }
 }

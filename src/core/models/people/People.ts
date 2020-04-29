@@ -24,6 +24,23 @@ class People {
 
     constructor() {}
 
+    public clone(){
+        const copy: People = new People()
+        copy.name = this._name
+        copy.age = this._age
+        copy.sex = this._sex
+        copy.hair = this._hair
+        copy.eyes = this._eyes
+        copy.weight = this._weight
+        copy.height = this._height
+        copy.race = this._race
+        copy.civil = this._civil
+        copy.children = this._children
+        copy.activity = this._activity
+        copy.illnessAlergieList = [...this._illnessAlergieList]
+        return copy
+    }
+
     // Setters
     set name(value: string) {
         this._name = value
