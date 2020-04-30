@@ -10,17 +10,21 @@ const FormSearch: React.FC = () => {
     const [modified, setModified] = useState<People>(people)
     return (
         <div>
-            <Fields people={modified} onChangePeople={(val) => {console.log(val); setModified(val)}} />
-            <ButtonBar align="rigth">
-                <ButtonAction
-                    label="clear"
-                    onClickBtn={() => console.log('clear btn')}
-                />
-                <ButtonAction
-                    label="submit"
-                    onClickBtn={() => console.log('clear btn')}
-                />
-            </ButtonBar>
+            <div style={{marginBottom: '1rem'}}>
+                <Fields people={modified} onChangePeople={(val) => {console.log(val); setModified(val)}} />
+            </div>
+            <div>
+                <ButtonBar align="rigth">
+                    <ButtonAction
+                        label="clear"
+                        onClickBtn={() => console.log('clear btn')}
+                    />
+                    <ButtonAction
+                        label="submit"
+                        onClickBtn={() => console.log('clear btn')}
+                    />
+                </ButtonBar>
+            </div>
         </div>
     );
 };

@@ -9,12 +9,15 @@ const ButtonAction: React.FC<Props> = ({label, onClickBtn}) => {
         <button
             onClick={e => onClickBtn()}
             style={{
-                padding: '0.5rem 1rem',
+                padding: '1rem 1.5rem',
                 fontSize: '1.2rem',
                 marginLeft: '1rem',
                 cursor: 'pointer',
-                backgroundColor: 'light-gray',
-                border: '1px solid black'
+                backgroundColor: 'darkorange',
+                color: 'white',
+                border: 'none',
+                borderRadius: '.2rem',
+                textTransform: 'uppercase'
             }}
         >
             {label}

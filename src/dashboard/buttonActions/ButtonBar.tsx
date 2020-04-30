@@ -12,7 +12,12 @@ type Props = {
 const ButtonBar: React.FC<Props> = ({children, align}) => {
     const AlignMiddle: { [key: string]: Align } = Align as any;
     return (
-        <div style={{display:"flex", padding: '.5rem 1rem', justifyContent: AlignMiddle[align]}} >
+        <div style={{
+            display:"flex",
+            padding: '.5rem 1rem',
+            justifyContent: AlignMiddle[align],
+            marginBottom: '2rem'
+        }}>
             {children}
         </div>
     );
