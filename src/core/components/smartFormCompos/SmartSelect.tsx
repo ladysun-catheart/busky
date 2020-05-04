@@ -11,7 +11,11 @@ export type CommonProps = {
 const SmartSelect = (props: CommonProps & SelectProps) => {
     const {label, help, values, options, onChange} = props
     return (
-        <div style={{display: 'flex', flexDirection: 'column', padding: '.5rem 1rem'}}>
+        <div style={{
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '.5rem 1rem',
+        }}>
             <Label
                 label={label}
                 help={help}

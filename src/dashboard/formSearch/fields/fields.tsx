@@ -1,6 +1,6 @@
 import React from 'react';
 import {EmptyContainer, InputContainer, RowContainer} from "../containers";
-import {SmartInput} from "../../../core/components/smartFormCompos";
+import {SmartInput, SmartSelect} from "../../../core/components/smartFormCompos";
 import {
     ColorFantasy,
     ColorHairRegular,
@@ -48,10 +48,11 @@ const Fields: React.FC<Props> = ({people, onChangePeople}) => {
             {/* 1º row */}
             <RowContainer>
                 <InputContainer spaces={2}>
-                    <SmartInput
+                    <SmartSelect
                         label="Hair"
                         help="Select the hair color"
-                        value={people.hair}
+                        values={[]}
+                        options={[]}
                         onChange={val => people.hair = (ColorHairRegularMiddle[val] || ColorFantasyMiddle[val]) as ColorHairRegular & ColorFantasy}
                     />
                 </InputContainer>
