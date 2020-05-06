@@ -6,6 +6,10 @@ import { ButtonBar, ButtonAction } from '../buttonActions';
 const FormSearch: React.FC = () => {
     const people: People = (new PeopleBuilder())
         .withAge(20)
+        .withInitHeight(140)
+        .withEndHeight(190)
+        .withInitWeight(40)
+        .withEndWeight(110)
         .build()
     const [modified, setModified] = useState<People>(people)
     return (

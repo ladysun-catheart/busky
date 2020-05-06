@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {EmptyContainer, InputContainer, RowContainer} from "../containers";
-import {SmartInput, SmartSelect} from "../../../core/components/smartFormCompos";
+import {SmartInput, SmartSelect, SmartMultiInput} from "../../../core/components/smartFormCompos";
 import {
     ColorFantasy,
     ColorHairRegular,
@@ -19,6 +19,7 @@ import People from '../../../core/models/people';
 import {listSexPeople} from "../../../core/models/people/enum/list";
 import i18n from '../../../core/i18n'
 import {SelectInfo} from "../../../core/utils/select";
+import MultiInput from '../../../core/components/smartFormCompos/pieces/MultiInput';
 
 type Props = {
     people: People,
@@ -26,12 +27,13 @@ type Props = {
 }
 const Fields: React.FC<Props> = ({people, onChangePeople}) => {
     const [lgn, setLegn] = useState('en')
-    const path = 'people.xxx.enum'
+
     const [optionsSexPeopleI18n, setOptionsSexPeopleI18n] = useState<Array<SelectInfo>>([])
     const [optionsColorEyeI18n, setOptionsColorEyeI18n] = useState<Array<SelectInfo>>([])
     const [optionsColorHairI18n, setOptionsColorHairI18n] = useState<Array<SelectInfo>>([])
     const [optionsCivilPeopleI18n, setOoptionsCivilPeopleI18n] = useState<Array<SelectInfo>>([])
     const [optionsRacePeopleI18n, setOptionsRacePeopleI18n] = useState<Array<SelectInfo>>([])
+
     const [optionsPhisicalActivityPeopleI18n, setOptionsPhisicalActivityPeopleI18n] = useState<Array<SelectInfo>>([])
     useEffect(() => {
         setOptionsSexPeopleI18n(optionsSexPeople(lgn, 'people.sex.enum.xxx'))
@@ -41,7 +43,7 @@ const Fields: React.FC<Props> = ({people, onChangePeople}) => {
         setOptionsRacePeopleI18n (optionsRacePeople(lgn, 'people.race.enum.xxx'))
         setOptionsPhisicalActivityPeopleI18n(optionsPhisicalActivityPeople(lgn, 'people.activity.enum.xxx'))
     }, [lgn])
-    console.log(optionsSexPeopleI18n)
+
     return (
         <div>
             {/* 1º row */}
@@ -94,19 +96,23 @@ const Fields: React.FC<Props> = ({people, onChangePeople}) => {
                     />
                 </InputContainer>
                 <InputContainer spaces={2}>
-                    <SmartInput
+                    <SmartMultiInput
                         label={i18n.t('people.weight.label')}
                         help="Type the cms weight"
-                        value={people.weight.toString()}
-                        onChange={val => people.weight = parseInt(val) }
+                        valueInit={people.initWeight.toString()}
+                        valueEnd={people.endWeight.toString()}
+                        onChangeInit={val => people.initWeight = parseInt(val)}
+                        onChangeEnd={val => people.endWeight = parseInt(val)}
                     />
                 </InputContainer>
                 <InputContainer spaces={2}>
-                    <SmartInput
+                    <SmartMultiInput
                         label={i18n.t('people.height.label')}
                         help="Type the cms height"
-                        value={people.height.toString()}
-                        onChange={val => people.height = parseInt(val) }
+                        valueInit={people.initHeight.toString()}
+                        valueEnd={people.endHeight.toString()}
+                        onChangeInit={val => people.initHeight = parseInt(val)}
+                        onChangeEnd={val => people.endHeight = parseInt(val)}
                     />
                 </InputContainer>
             </RowContainer>

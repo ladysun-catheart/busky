@@ -14,6 +14,11 @@ class PeopleBuilder {
     private children: number = 0
     private activity: PhisicalActivityPeople = PhisicalActivityPeople.none
     private illnessAlergieList: Array<string> = []
+
+    private initHeight: number = 0
+    private endHeight: number = 0
+    private initWeight: number = 0
+    private endWeight: number = 0
     
     constructor(){}
 
@@ -77,8 +82,29 @@ class PeopleBuilder {
         return this;
     }
 
+    public withInitHeight(value: number) {
+        this.initHeight = value
+        return this
+    }
+
+    public withEndHeight(value: number) {
+        this.endHeight = value
+        return this
+    }
+
+    public withInitWeight(value: number) {
+        this.initWeight = value
+        return this
+    }
+
+    public withEndWeight(value: number) {
+        this.endWeight = value
+        return this
+    }
+
     public build(): People {
         const newPeople = new People()
+
         newPeople.name = this.name
         newPeople.age = this.age
         newPeople.sex = this.sex
@@ -91,6 +117,12 @@ class PeopleBuilder {
         newPeople.children = this.children
         newPeople.activity = this.activity
         newPeople.illnessAlergieList = this.illnessAlergieList
+
+        newPeople.initHeight = this.initHeight
+        newPeople.endHeight = this.endHeight
+        newPeople.initWeight = this.initWeight
+        newPeople.endWeight = this.endWeight
+
         return newPeople
     }
 }

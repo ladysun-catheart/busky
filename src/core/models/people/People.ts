@@ -1,5 +1,3 @@
-
-
 import SexPeople from "./enum/SexPeople";
 import ColorHairRegular from "./enum/ColorHairRegular";
 import ColorFantasy from "./enum/ColorFantasy";
@@ -22,10 +20,16 @@ class People {
     private _activity: PhisicalActivityPeople = PhisicalActivityPeople.none
     private _illnessAlergieList: Array<string> = []
 
+    private _initHeight: number = 0
+    private _endHeight: number = 0
+    private _initWeight: number = 0
+    private _endWeight: number = 0
+
     constructor() {}
 
-    public clone(){
+    public clone(): People{
         const copy: People = new People()
+
         copy.name = this._name
         copy.age = this._age
         copy.sex = this._sex
@@ -38,6 +42,12 @@ class People {
         copy.children = this._children
         copy.activity = this._activity
         copy.illnessAlergieList = [...this._illnessAlergieList]
+
+        copy.initHeight = this._initHeight
+        copy.endHeight = this._endHeight
+        copy.initWeight = this._initWeight
+        copy.endWeight = this._endWeight
+        
         return copy
     }
 
@@ -90,6 +100,22 @@ class People {
         this._illnessAlergieList = value
     }
 
+    set initHeight(value: number) {
+        this._initHeight = value
+    }
+
+    set endHeight(value: number) {
+        this._endHeight = value
+    }
+
+    set initWeight(value: number) {
+        this._initWeight = value
+    }
+
+    set endWeight(value: number) {
+        this._endWeight = value
+    }
+
 
     // Getter
     get name(): string {
@@ -137,6 +163,22 @@ class People {
 
     get illnessAlergieList(): Array<string> {
         return this._illnessAlergieList;
+    }
+
+    get initHeight(): number {
+        return this._initHeight;
+    }
+
+    get endHeight(): number {
+        return this._endHeight;
+    }
+
+    get initWeight(): number {
+        return this._initWeight;
+    }
+
+    get endWeight(): number {
+        return this._endWeight;
     }
 }
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import {InputProps} from "../type";
+import {InputProps, MultiInputProps} from "../type";
 
 const Input: React.FC<InputProps> = ({value, onChange}) => {
     return (
