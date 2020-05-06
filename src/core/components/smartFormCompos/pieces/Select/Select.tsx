@@ -20,7 +20,8 @@ const Select: React.FC<SelectProps> = ({values, options, onChange}) => {
                     backgroundImage: `url(${arrow})`,
                     backgroundRepeat: 'no-repeat',
                     backgroundPosition: 'right top',
-                    height: '2.1rem'
+                    height: '2.1rem',
+                    cursor: 'pointer'
                 }}
                 value={values}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => onChange(e.target.value)}

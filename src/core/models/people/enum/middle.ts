@@ -1,7 +1,12 @@
-import {CivilPeople, ColorFantasy, ColorHairRegular, SexPeople} from "./index";
-import ColorEyeRegular from "./ColorEyeRegular";
-import RacePeople from "./RacePeople";
-import PhisicalActivityPeople from "./PhisicalActivityPeople";
+import {
+    CivilPeople,
+    ColorFantasy,
+    ColorHairRegular,
+    ColorEyeRegular,
+    RacePeople,
+    PhisicalActivityPeople,
+    SexPeople,
+} from "./index";
 
 const SexPeopleMiddle: { [key: string]: SexPeople } = SexPeople as any;
 const ColorHairRegularMiddle: { [key: string]: ColorHairRegular } = ColorHairRegular as any;
