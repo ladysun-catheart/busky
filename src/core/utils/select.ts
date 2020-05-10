@@ -11,6 +11,10 @@ const createOptionListFromEnum = (EnumType: any, lng: string, path: string = 'xx
     })
 )
 
+const getFirstOption = (optionList: Array<SelectInfo>): string =>
+    optionList[0] ? optionList[0].id as string : ''
+
 export {
-    createOptionListFromEnum
+    createOptionListFromEnum,
+    getFirstOption
 }

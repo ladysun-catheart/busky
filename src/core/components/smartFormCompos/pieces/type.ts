@@ -11,7 +11,7 @@ export type MultiInputProps = {
 }
 
 export type SelectProps = {
-    values: Array<string>,
+    value: string,
     options: Array<{
         id: string,
         label: string

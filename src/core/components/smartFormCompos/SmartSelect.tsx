@@ -9,7 +9,7 @@ export type CommonProps = {
 }
 
 const SmartSelect = (props: CommonProps & SelectProps) => {
-    const {label, help, values, options, onChange} = props
+    const {label, help, value, options, onChange} = props
     return (
         <div style={{
             display: 'flex',
@@ -21,7 +21,7 @@ const SmartSelect = (props: CommonProps & SelectProps) => {
                 help={help}
             />
             <Select
-                values={values}
+                value={value}
                 options={options}
                 onChange={onChange}
             />

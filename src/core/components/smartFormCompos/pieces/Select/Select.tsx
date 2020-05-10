@@ -2,7 +2,7 @@ import React from 'react';
 import {SelectProps} from "../type";
 import arrow from './arrow_down.svg'
 
-const Select: React.FC<SelectProps> = ({values, options, onChange}) => {
+const Select: React.FC<SelectProps> = ({value, options, onChange}) => {
     return (
         <div style={{flex: '1', flexDirection: 'row'}}>
             <select
@@ -23,7 +23,7 @@ const Select: React.FC<SelectProps> = ({values, options, onChange}) => {
                     height: '2.1rem',
                     cursor: 'pointer'
                 }}
-                value={values}
+                value={value}
                 onChange={(e: React.ChangeEvent<HTMLSelectElement>) => onChange(e.target.value)}
             >
                 {options.map(op => <option value={op.id}>{op.label}</option>)}

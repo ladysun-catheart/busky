@@ -4,18 +4,14 @@ import Fields from "./fields";
 import { ButtonBar, ButtonAction } from '../buttonActions';
 
 const FormSearch: React.FC = () => {
-    const people: People = (new PeopleBuilder())
-        .withAge(20)
-        .withInitHeight(140)
-        .withEndHeight(190)
-        .withInitWeight(40)
-        .withEndWeight(110)
-        .build()
-    const [modified, setModified] = useState<People>(people)
+
     return (
         <div>
             <div style={{marginBottom: '1rem'}}>
-                <Fields people={modified} onChangePeople={(val) => {console.log(val); setModified(val)}} />
+                <Fields
+                    onChangePeople={(people: People) => {
+                    //console.log(people)
+                }} />
             </div>
             <div>
                 <ButtonBar align="rigth">
