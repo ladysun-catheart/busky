@@ -180,7 +180,7 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                         value={modified.civil || getFirstOption(optionsCivilPeopleI18n)}
                         options={optionsCivilPeopleI18n}
                         onChange={(val: string) => onChangeField(() => {
-                            modified.race = CivilPeopleMiddle[val]
+                            modified.civil = CivilPeopleMiddle[val]
                         })}
                     />
                 </InputContainer>
