@@ -1,5 +1,6 @@
-import { SmartInput, SmartSelect } from './smartFormCompos'
+import { SmartInput, SmartSelect, SmartInputTag } from './smartFormCompos'
 export {
     SmartInput,
-    SmartSelect
+    SmartSelect,
+    SmartInputTag
 }

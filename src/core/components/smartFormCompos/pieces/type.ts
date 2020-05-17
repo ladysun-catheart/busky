@@ -18,3 +18,8 @@ export type SelectProps = {
     }>,
     onChange: (val: string) => void
 }
+
+export type InputTagProps = {
+    values: Array<string>,
+    onChange: (val: Array<string>) => void
+}

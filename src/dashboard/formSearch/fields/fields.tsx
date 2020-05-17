@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import {EmptyContainer, InputContainer, RowContainer} from "../containers";
-import {SmartInput, SmartSelect, SmartMultiInput} from "../../../core/components/smartFormCompos";
+import {SmartInput, SmartSelect, SmartMultiInput, SmartInputTag} from "../../../core/components/smartFormCompos";
 import {
     SexPeople,
     ColorHairRegular,
@@ -31,21 +31,12 @@ import {getFirstOption, SelectInfo} from "../../../core/utils/select";
 import {getFirstEnum} from "../../../core/utils/enum";
 
 type Props = {
+    people: People,
     onChangePeople: (people: People) => void
 }
 
-const Fields: React.FC<Props> = ({onChangePeople}) => {
+const Fields: React.FC<Props> = ({people, onChangePeople}) => {
     const [lgn, setLgn] = useState('en')
-
-    const [modified, setModified] = useState<People>(
-        (new PeopleBuilder())
-            .withAge(20)
-            .withInitHeight(140)
-            .withEndHeight(190)
-            .withInitWeight(40)
-            .withEndWeight(110)
-            .build()
-    )
 
     const [optionsSexPeopleI18n, setOptionsSexPeopleI18n] = useState<Array<SelectInfo>>([])
     const [optionsColorEyeI18n, setOptionsColorEyeI18n] = useState<Array<SelectInfo>>([])
@@ -63,10 +54,10 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
         setOptionsPhisicalActivityPeopleI18n(optionsPhisicalActivityPeople(lgn, 'people.activity.enum.xxx'))
     }, [lgn])
 
-    const onChangeField = (fieldChangeFunc: () => void) => {
-        fieldChangeFunc()
-        setModified(modified.clone())
-        onChangePeople(modified)
+    const onChangeField = (fieldChangeFunc: (people: People) => void) => {
+        const modifyPeople = people.clone()
+        fieldChangeFunc(modifyPeople)
+        onChangePeople(modifyPeople)
     }
 
     return (
@@ -77,9 +68,9 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                     <SmartInput
                         label={i18n.t('people.name.label')}
                         help="Your complete name including surnames"
-                        value={modified.name}
-                        onChange={val => onChangeField(() => {
-                            modified.name = val
+                        value={people.name}
+                        onChange={val => onChangeField(people => {
+                            people.name = val
                         })}
                     />
                 </InputContainer>
@@ -87,9 +78,9 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                     <SmartInput
                         label={i18n.t('people.age.label')}
                         help="How old are you?"
-                        value={modified.age.toString()}
-                        onChange={val => onChangeField(() => {
-                            modified.age = parseInt(val)
+                        value={people.age.toString()}
+                        onChange={val => onChangeField(people => {
+                            people.age = parseInt(val)
                         })}
                     />
                 </InputContainer>
@@ -97,10 +88,10 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                     <SmartSelect
                         label={i18n.t('people.sex.label')}
                         help="Your gender"
-                        value={modified.sex || getFirstOption(optionsSexPeopleI18n)}
+                        value={people.sex || getFirstOption(optionsSexPeopleI18n)}
                         options={optionsSexPeopleI18n}
-                        onChange={(val: string) => onChangeField(() => {
-                            modified.sex = SexPeopleMiddle[val]
+                        onChange={(val: string) => onChangeField(people => {
+                            people.sex = SexPeopleMiddle[val]
                         })}
                     />
                 </InputContainer>
@@ -112,10 +103,10 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                     <SmartSelect
                         label={i18n.t('people.hair.label')}
                         help="Select the hair color"
-                        value={modified.hair || getFirstOption(optionsColorHairI18n)}
+                        value={people.hair || getFirstOption(optionsColorHairI18n)}
                         options={optionsColorHairI18n}
-                        onChange={(val: string) => onChangeField(() => {
-                            modified.hair = (ColorHairRegularMiddle[val] || ColorFantasyMiddle[val]) as ColorHairRegular & ColorFantasy
+                        onChange={(val: string) => onChangeField(people => {
+                            people.hair = (ColorHairRegularMiddle[val] || ColorFantasyMiddle[val]) as ColorHairRegular & ColorFantasy
                         })}
                     />
                 </InputContainer>
@@ -123,10 +114,10 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                     <SmartSelect
                         label={i18n.t('people.eyes.label')}
                         help="Select the eye color"
-                        value={modified.eyes || getFirstOption(optionsColorEyeI18n)}
+                        value={people.eyes || getFirstOption(optionsColorEyeI18n)}
                         options={optionsColorEyeI18n}
-                        onChange={(val: string) => onChangeField(() => {
-                            modified.eyes = (ColorEyeRegularMiddle[val] || ColorFantasyMiddle[val]) as ColorHairRegular & ColorFantasy
+                        onChange={(val: string) => onChangeField(people => {
+                            people.eyes = (ColorEyeRegularMiddle[val] || ColorFantasyMiddle[val]) as ColorHairRegular & ColorFantasy
                         })}
                     />
                 </InputContainer>
@@ -134,13 +125,13 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                     <SmartMultiInput
                         label={i18n.t('people.weight.label')}
                         help="Type the cms weight"
-                        valueInit={modified.initWeight.toString()}
-                        valueEnd={modified.endWeight.toString()}
-                        onChangeInit={val => onChangeField(() => {
-                            modified.initWeight = parseInt(val)
+                        valueInit={people.initWeight.toString()}
+                        valueEnd={people.endWeight.toString()}
+                        onChangeInit={val => onChangeField(people => {
+                            people.initWeight = parseInt(val)
                         })}
-                        onChangeEnd={val => onChangeField(() => {
-                            modified.endWeight = parseInt(val)
+                        onChangeEnd={val => onChangeField(people => {
+                            people.endWeight = parseInt(val)
                         })}
                     />
                 </InputContainer>
@@ -148,13 +139,13 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                     <SmartMultiInput
                         label={i18n.t('people.height.label')}
                         help="Type the cms height"
-                        valueInit={modified.initHeight.toString()}
-                        valueEnd={modified.endHeight.toString()}
-                        onChangeInit={val => onChangeField(() => {
-                            modified.initHeight = parseInt(val)
+                        valueInit={people.initHeight.toString()}
+                        valueEnd={people.endHeight.toString()}
+                        onChangeInit={val => onChangeField(people => {
+                            people.initHeight = parseInt(val)
                         })}
-                        onChangeEnd={val => onChangeField(() => {
-                            modified.endHeight = parseInt(val)
+                        onChangeEnd={val => onChangeField(people => {
+                            people.endHeight = parseInt(val)
                         })}
                     />
                 </InputContainer>
@@ -166,10 +157,10 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                     <SmartSelect
                         label={i18n.t('people.race.label')}
                         help="Select your physiognomy depending on your race or ethnical group"
-                        value={modified.race || getFirstOption(optionsRacePeopleI18n)}
+                        value={people.race || getFirstOption(optionsRacePeopleI18n)}
                         options={optionsRacePeopleI18n}
-                        onChange={(val: string) => onChangeField(() => {
-                            modified.race = RacePeopleMiddle[val]
+                        onChange={(val: string) => onChangeField(people => {
+                            people.race = RacePeopleMiddle[val]
                         })}
                     />
                 </InputContainer>
@@ -177,10 +168,10 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                     <SmartSelect
                         label={i18n.t('people.civil.label')}
                         help="Select the civil status"
-                        value={modified.civil || getFirstOption(optionsCivilPeopleI18n)}
+                        value={people.civil || getFirstOption(optionsCivilPeopleI18n)}
                         options={optionsCivilPeopleI18n}
-                        onChange={(val: string) => onChangeField(() => {
-                            modified.civil = CivilPeopleMiddle[val]
+                        onChange={(val: string) => onChangeField(people => {
+                            people.civil = CivilPeopleMiddle[val]
                         })}
                     />
                 </InputContainer>
@@ -188,9 +179,9 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                     <SmartInput
                         label={i18n.t('people.children.label')}
                         help="How many sibling you have"
-                        value={modified.children.toString()}
-                        onChange={val => onChangeField(() => {
-                            modified.children = parseInt(val)
+                        value={people.children.toString()}
+                        onChange={val => onChangeField(people => {
+                            people.children = parseInt(val)
                         })}
                     />
                 </InputContainer>
@@ -203,20 +194,20 @@ const Fields: React.FC<Props> = ({onChangePeople}) => {
                     <SmartSelect
                         label={i18n.t('people.activity.label')}
                         help="How many exercise you get"
-                        value={modified.activity || getFirstOption(optionsPhisicalActivityPeopleI18n)}
+                        value={people.activity || getFirstOption(optionsPhisicalActivityPeopleI18n)}
                         options={optionsPhisicalActivityPeopleI18n}
-                        onChange={(val: string) => onChangeField(() => {
-                            modified.activity = modified.activity = PhisicalActivityPeopleMiddle[val]
+                        onChange={(val: string) => onChangeField(people => {
+                            people.activity = people.activity = PhisicalActivityPeopleMiddle[val]
                         })}
                     />
                 </InputContainer>
                 <InputContainer spaces={6}>
-                    <SmartInput
+                    <SmartInputTag
                         label={i18n.t('people.illnessAlergieList.label')}
                         help="Type any illnes or allergy you have"
-                        value={''}
-                        onChange={val => onChangeField(() => {
-                            modified.illnessAlergieList = []
+                        values={people.illnessAlergieList}
+                        onChange={val => onChangeField(people => {
+                            people.illnessAlergieList = val
                         })}
                     />
                 </InputContainer>
